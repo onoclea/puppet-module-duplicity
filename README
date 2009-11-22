@@ -1,0 +1,5 @@
+Puppet module for managing duplicity's (http://duplicity.nongnu.org) configuration files.
+
+It uses the concept of secure backups with signing and encrypting keys being two separate pairs. Only the signing key is available in both public and private parts.
+
+--- Pawel J. Sawicki <pjs@pjs.name>
