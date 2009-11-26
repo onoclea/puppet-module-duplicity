@@ -38,7 +38,7 @@ for directory in /etc /usr/local/sbin; do
 	NAME=`echo $directory | sed 's|/|_|g'`;
 	cd $directory
 	duplicity ${LEVEL} --no-print-statistics --verbosity 2 --s3-use-new-style --gpg-options "--trust-model=always" --sign-key <%= signing_key_id %> --encrypt-key <%= encrypting_key_id %> . "s3+http://<%= s3_bucket_prefix %><%= fqdn %>/system/${NAME}";
-	if [ -z "${LEVEL}" -o "${LEVEL}" = 'FULL' ]; then
+	if [ -n "${LEVEL}" -a "${LEVEL}" = 'FULL' ]; then
 		duplicity remove-all-but-n-full 4 --no-print-statistics --verbosity 2 --force --s3-use-new-style "s3+http://<%= s3_bucket_prefix %><%= fqdn %>/system/${NAME}";
 	fi
 done
